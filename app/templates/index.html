@@ -7,16 +7,17 @@
       <div class="col s12">
         <div class="card blue-grey lighten-5">
           <div class="card-content white-text" id="total_time">
+            <h3 class="blue-grey-text text-darken-2">Total Time</h3>
             <div class="row">
               <div class="input-field col s5">
-                <input id="total_min" type="number" value="5">
+                <input class="timerinput" id="total_min" type="number" value="5">
                 <label for="total_min">minutes</label>
               </div>
               <div class="input-field col s1">
                 :
               </div>
               <div class="input-field col s6">
-                <input id="total_sec" type="number" value="00" max="60" min="00">
+                <input class="timerinput" id="total_sec" type="number" value="00" max="60" min="00">
                 <label for="total_sec">Seconds</label>
               </div>
             </div>
@@ -60,8 +61,8 @@
             </div>
           </div>
           <p id="time_remaining" class="flow-text">TIME REMAINING</p>
-          <div id="clock"></div>
-          <div id="clock_msg"></div>
+          <div class="center z-depth-3" id="clock"></div>
+          <div class="center" id="clock_msg"></div>
         </div>
       </div>
     </div>
