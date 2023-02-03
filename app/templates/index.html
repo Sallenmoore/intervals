@@ -2,21 +2,21 @@
 
 {% block content %}
 <div class="row">
-  <div class="col s5">
+  <div class="col s4">
     <div class="row">
       <div class="col s12">
-        <div class="card blue-grey lighten-5">
-          <div class="card-content white-text" id="total_time">
+        <div class="card blue-grey blue-grey-text lighten-5">
+          <div class="card-content" id="total_time">
             <h3 class="blue-grey-text text-darken-2">Total Time</h3>
-            <div class="row">
-              <div class="input-field col s5">
+            <div class="row valign-wrapper">
+              <div class="input-field col s3">
                 <input class="timerinput" id="total_min" type="number" value="5">
                 <label for="total_min">minutes</label>
               </div>
-              <div class="input-field col s1">
+              <div class="input-field col s1 blue-grey-text">
                 :
               </div>
-              <div class="input-field col s6">
+              <div class="input-field col s3">
                 <input class="timerinput" id="total_sec" type="number" value="00" max="60" min="00">
                 <label for="total_sec">Seconds</label>
               </div>
@@ -25,14 +25,14 @@
             <ul class="flow-text blue-grey-text text-darken-2" id="intervals">
             </ul>
             <div class="row valign-wrapper">
-              <div class="input-field col s4">
+              <div class="input-field col s3">
                 <input id="add_interval_min" type="number" value="0">
                 <label for="add_interval_min">minutes</label>
               </div>
               <div class="input-field col s1">
                 :
               </div>
-              <div class="input-field col s4">
+              <div class="input-field col s3">
                 <input id="add_interval_sec" type="number" value="00" max="60" min="00">
                 <label for="add_interval_sec">Seconds</label>
               </div>
@@ -45,24 +45,34 @@
       </div>
     </div>
   </div>
-  <div class="col s7">
+  <div class="col s8">
     <div class="row">
       <div class="col s12">
         <div class="card-panel indigo lighten-4">
           <div class="row center-align">
             <div class="input-field col s4">
-              <a class="waves-effect waves-light btn green darken-4" id="start_button">Start</a>
+              <a class="btn-floating btn-large waves-effect btn green darken-4" id="start_button">
+                <i class="material-icons">play_arrow</i>
+              </a>
             </div>
             <div class="input-field col s4">
-              <a class="waves-effect waves-light btn yellow darken-1" id="pause_button">Pause</a>
+              <a class="btn-floating btn-large waves-effect btn yellow darken-1" id="pause_button">
+                <i class="material-icons">pause</i>
+              </a>
             </div>
             <div class="input-field col s4">
-              <a class="waves-effect waves-light btn red darken-4" id="clear_button">Clear</a>
+              <a class="btn-floating btn-large waves-effect btn red darken-4" id="clear_button">
+                <i class="material-icons">stop</i>
+              </a>
             </div>
           </div>
           <p id="time_remaining" class="flow-text">TIME REMAINING</p>
-          <div class="center z-depth-3" id="clock"></div>
-          <div class="center" id="clock_msg"></div>
+          <div class="section center z-depth-3" id="clock"></div>
+          <div id="clock_msg" class="modal">
+            <div class="modal-content">
+              <h1>Complete!</h1>
+            </div>
+          </div>
         </div>
       </div>
     </div>
