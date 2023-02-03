@@ -1,29 +1,13 @@
-# Simple App
+# Intervals
 
 ---
 
 # Quick Commands
 
-## Install
-
-```
-make install
-```
-
-```
-make package
-```
-
 ## Run
 
 ```
 make run
-```
-
-## Test
-
-```
-make test
 ```
 
 ---
@@ -46,42 +30,8 @@ make test
 
 ### FrontEnd Stack
 
-- [PyScript](https://pyscript.net/)
-
-## Developer Notes
-
-### Start/Status/Stop Commands
-
-- build container
-  - `make build`
-- build and run the container
-  - `make run`
-- start the container and open localhost
-  - `make start`
-- container status
-  - `docker-compose ps -a`
-- run a command in the container
-  - `docker-compose exec -option simple_app <command>`
-- stop all running containers
-  - `make clean`
-- remove all stopped containers
-  - `make deepclean`
-
-### Read Logs
-
-```sh
-docker logs --since=15m -t simple_app
-```
-
-*follows as a background process*
-
-```sh
-docker logs -f --since=15m -t <container> &`
-```
-
-### Run Tests
-
-- `make tests`
+- [Javascript](https://pyscript.net/)
+- [Materialize](https://materializecss.com/)
 
 ---
 

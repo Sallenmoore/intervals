@@ -21,11 +21,11 @@ error_log_format = "%(U)s -  %(m)s - response time: %(M)s %(b)s \n"
 loglevel = os.environ.get("LOG_LEVEL", "INFO").upper()
 
 ## DEVELOPMENT OPTIONS
-timeout = 120
-workers = 2
+# timeout = 120
+# workers = 2
 # Whether to send output to the error log
-capture_output = True
-# How verbose the Gunicorn error logs should be
+# capture_output = True
+# # How verbose the Gunicorn error logs should be
 
-reload = True
-reload_extra_files = ["templates/", "static/"]
+# reload = True
+# reload_extra_files = ["templates/", "static/"]

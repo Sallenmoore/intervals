@@ -1,3 +1,3 @@
-__all__ = ["models", "views", "app", "tests", "utils"]
+__all__ = ["app", "config"]
 
 from app import create_app

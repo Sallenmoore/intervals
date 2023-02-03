@@ -4,7 +4,6 @@ RUN apt-get update
 RUN apt-get install --no-install-recommends -y build-essential curl git
 
 # copy files
-COPY ./firebase.json /var/firebase.json
 COPY ./gunicorn.conf.py /var/gunicorn.conf.py
 
 # install dependencies
