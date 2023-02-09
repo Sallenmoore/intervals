@@ -112,7 +112,7 @@ function start_timer(e) {
   var seconds = document.getElementById("total_sec").value;
 
   var interval_index = 0;
-  var countdown_total = Math.floor(minutes * 60) + (seconds % 60);
+  var countdown_total = Math.floor(minutes * 60) + (seconds % 60) + 1;
   var next_interval = Global.intervals[interval_index];
   // Update the count down every 1 second
   Global.timer = setInterval(function () {
@@ -134,7 +134,7 @@ function start_timer(e) {
       clearInterval(Global.timer);
       var instance = document.getElementById("clock_msg");
       instance.innerHTML = "SET COMPLETE!";
-      instance.open();
+      instance.parentNode.open();
     } else if (next_interval == 0) {
       M.toast({
         html: "<h1>INTERVAL COMPLETE</h1>",
