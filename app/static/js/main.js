@@ -112,8 +112,8 @@ function start_timer(e) {
   var seconds = document.getElementById("total_sec").value;
 
   var interval_index = 0;
-  var countdown_total = Math.floor(minutes * 60) + (seconds % 60) + 1;
-  var next_interval = Global.intervals[interval_index];
+  var countdown_total = Math.floor(minutes * 60) + (seconds % 60);
+  var next_interval = Global.intervals[interval_index] - 1;
   // Update the count down every 1 second
   Global.timer = setInterval(function () {
     if (Global.paused) {
@@ -147,8 +147,8 @@ function start_timer(e) {
       intervals.children[interval_index].removeChild(i);
 
       interval_index = (interval_index + 1) % Global.intervals.length;
-      next_interval = Global.intervals[interval_index];
-      console.log(interval_index);
+      next_interval = Global.intervals[interval_index] - 1;
+      //console.log(interval_index);
       intervals.children[interval_index].appendChild(
         createIcon("chevron_left")
       );
