@@ -1,21 +1,48 @@
-# PRODUCTION
+##################################
+#           PRODUCTION           #
+##################################
 
-## Framework
+##### Frameworks #####
+--extra-index-url https://test.pypi.org/simple/
+autonomous == 0.0.68.4
 
-Flask  
+##### Configuration and Documentation #####
+
+
+##### System #####
+
+
+##### API #####
+
+
+##### Database #####
+
+
+##### Frontend #####
+
+
+
+##### Network #####
+
+requests
 gunicorn
 
-# DEVELOPMENT
+##### Security #####
 
-# ## Linting
 
-# black
-# pytest-flakes
+##### Async ##### 
 
-# ## Debugging
-# flask_debug
 
-# ## Testing
+##### AI #####
 
-# pytest
-# coverage
+
+##### Parsing #####
+
+dateparser
+
+##################################
+#           DEVELOPMENT          #
+##################################
+
+pytest
+pytest-cov

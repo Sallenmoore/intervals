@@ -1,15 +1,25 @@
 
+.PHONY: all build run clean deepclean test tests debug
+
 all: test clean run start
 
-APP_NAME?=timer
-CONTAINERS=$(sudo docker ps -a -q)
+APP_NAME?=intervals
+CONTAINERS=$$(sudo docker ps -a -q)
 
+###### Database #######
+
+create-network:
+	if [ -z "$$(docker network ls --filter name=app_net | grep -w app_net)" ]; then \
+		docker network create app_net; \
+	fi
+
+###### BUILD and RUN #######
 build:
 	docker-compose build --no-cache
 
-run: 
+run: clean create-network 
 	docker-compose up --build -d
-	echo "docker logs -t $(APP_NAME) -f"
+	docker logs -f --since=5m -t $(APP_NAME)
 
 ###### CLEANING #######
 
@@ -25,9 +35,14 @@ deepclean: clean
 
 ###### TESTING #######
 
-#OPTIONS
-TEST_FUNC?="test_"
+debug: run
+	docker logs -f --since=5m -t $(APP_NAME)
 
-test: clean run
-	echo "Running tests"
-	-docker exec -it $(APP_NAME) python -m pytest -v -s tests/$(TEST_FUNC)*.py
+tests: 
+	docker-compose up --build -d
+	docker exec -it $(APP_NAME) python -m pytest --cov=autonomous -rx -l -x --log-level=INFO --no-cov-on-fail
+
+RUNTEST?="test_"
+test:
+	docker-compose up --build -d
+	docker exec -it $(APP_NAME) python -m pytest --log-level=INFO -rx -l -x -k $(RUNTEST)

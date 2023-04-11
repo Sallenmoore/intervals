@@ -1,36 +1,39 @@
+{% import 'macros/_jstemplates.html' as jstemplates %}
+
 <!doctype html>
 <html lang="en">
 
     <head>
         {% block head %}
-        <meta charset="{{url_for('static', filename='favicon-32x32.png')}}">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+        <meta charset="{{url_for('static', filename='images/favicon-32x32.png')}}">
         <link rel="icon" href="data:,">
-        <link rel="apple-touch-icon" sizes="180x180" href="{{url_for('static', filename='apple-touch-icon.png')}}">
-        <link rel="icon" type="image/png" sizes="32x32" href="{{url_for('static', filename='favicon-32x32.png')}}">
-        <link rel="icon" type="image/png" sizes="16x16" href="{{url_for('static', filename='favicon-16x16.png')}}">
+        <link rel="apple-touch-icon" sizes="180x180"
+            href="{{url_for('static', filename='images/apple-touch-icon.png')}}">
+        <link rel="icon" type="image/png" sizes="32x32"
+            href="{{url_for('static', filename='images/favicon-32x32.png')}}">
+        <link rel="icon" type="image/png" sizes="16x16"
+            href="{{url_for('static', filename='images/favicon-16x16.png')}}">
         <link rel="manifest" href="{{url_for('static', filename='site.webmanifest')}}">
 
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Intervals</title>
         <!-- Compiled and minified CSS -->
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-        <link rel="stylesheet" href="{{url_for('static', filename='style/style.css')}}">
-
-
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style/main.css') }}">
         {% endblock %}
     </head>
 
     <body>
-        <div class="nav">
-            {% include "nav.html"%}
-        </div>
-        <div class="container">
-            {% block content %}{% endblock %}
+        {% block content %}{% endblock %}
+
+        <div id="js_templates" class="is-hidden">
+            {{ jstemplates.jstemplates() }}
         </div>
         <!-- JavaScript Libs -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-        <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+        <script src="https://code.iconify.design/iconify-icon/1.0.3/iconify-icon.min.js"></script>
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+        <script type="text/javascript" src="{{ url_for('static', filename='js/main.min.js') }}"></script>
     </body>
 
 </html>

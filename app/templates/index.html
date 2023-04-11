@@ -1,82 +1,80 @@
 {% extends "base.html" %}
+{% import 'macros/_nav.html' as nav with context %}
 
 {% block content %}
-<div class="row">
-  <div class="col s4">
-    <div class="row">
-      <div class="col s12">
-        <div class="card blue-grey blue-grey-text lighten-5">
-          <div class="card-content" id="total_time">
-            <h3 class="blue-grey-text text-darken-2">Total Time</h3>
-            <div class="row valign-wrapper">
-              <div class="input-field col s3">
-                <input class="timerinput" id="total_min" type="number" value="5">
-                <label for="total_min">minutes</label>
-              </div>
-              <div class="input-field col s1 blue-grey-text">
-                :
-              </div>
-              <div class="input-field col s3">
-                <input class="timerinput" id="total_sec" type="number" value="00" max="60" min="00">
-                <label for="total_sec">Seconds</label>
-              </div>
-            </div>
-            <h3 class="blue-grey-text text-darken-2">Intervals</h3>
-            <ul class="flow-text blue-grey-text text-darken-2" id="intervals">
-            </ul>
-            <div class="row valign-wrapper">
-              <div class="input-field col s3">
-                <input id="add_interval_min" type="number" value="0">
-                <label for="add_interval_min">minutes</label>
-              </div>
-              <div class="input-field col s1">
-                :
-              </div>
-              <div class="input-field col s3">
-                <input id="add_interval_sec" type="number" value="00" max="60" min="00">
-                <label for="add_interval_sec">Seconds</label>
-              </div>
-              <div class="input-field col s3">
-                <a class="waves-effect waves-light btn" id="add_interval_button">Add</a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="col s8">
-    <div class="row">
-      <div class="col s12">
-        <div class="card-panel indigo lighten-4">
-          <div class="row center-align">
-            <div class="input-field col s4">
-              <a class="btn-floating btn-large waves-effect btn green darken-4" id="start_button">
-                <i class="material-icons">play_arrow</i>
-              </a>
-            </div>
-            <div class="input-field col s4">
-              <a class="btn-floating btn-large waves-effect btn yellow darken-1" id="pause_button">
-                <i class="material-icons">pause</i>
-              </a>
-            </div>
-            <div class="input-field col s4">
-              <a class="btn-floating btn-large waves-effect btn red darken-4" id="clear_button">
-                <i class="material-icons">stop</i>
-              </a>
-            </div>
-          </div>
-          <p id="time_remaining" class="flow-text">TIME REMAINING</p>
-          <div class="section center z-depth-3" id="clock"></div>
-          <div class="modal">
-            <div id="clock_msg" class="modal-content">
-              <h1>Complete!</h1>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+{{ nav.fullnav() }}
 
-{% endblock %}
+<div class="container">
+  <div class="section">
+    <div class="row has-spacing">
+      <div class="column is-5">
+        <div class="panel">
+          <div class="row">
+            <div class="column is-12">
+              <h2>Total Time</h2>
+              <div class="row" id="total_time">
+                <div class="column is-one-quarter">
+                  <input class="timerinput" id="total_min" type="number" value="5">
+                  <label for="total_min">minutes</label>
+                </div>
+                <div class="column is-shrink is-heading">
+                  :
+                </div>
+                <div class="column is-one-third ">
+                  <input class="timerinput" id="total_sec" type="number" value="00" max="60" min="00">
+                  <label for="total_sec">Seconds</label>
+                </div>
+              </div>
+              <h2>Intervals</h2>
+              <ul class="has-no-list-style" id="intervals">
+              </ul>
+              <div class="row">
+                <div class="column">
+                  <input id="add_interval_min" type="number" value="0">
+                  <label for="add_interval_min">minutes</label>
+                </div>
+                <div class="column">
+                  :
+                </div>
+                <div class="column">
+                  <input id="add_interval_sec" type="number" value="00" max="60" min="00">
+                  <label for="add_interval_sec">Seconds</label>
+                </div>
+                <div class="column">
+                  <a class="button" id="add_interval_button">Add</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="column is-6">
+        <div class="panel">
+          <div class="row has-centered">
+            <div class="column is-shrink">
+              <a class="button" id="start_button">
+                <iconify-icon icon="material-symbols:play-circle-outline" width="50" height="50"></iconify-icon>
+              </a>
+            </div>
+            <div class="column is-shrink">
+              <a class="button" id="pause_button">
+                <iconify-icon icon="material-symbols:pause-circle-outline" width="50" height="50"></iconify-icon>
+              </a>
+            </div>
+            <div class="column is-shrink">
+              <a class="button" id="clear_button">
+                <iconify-icon icon="material-symbols:stop-circle-outline" width="50" height="50"></iconify-icon>
+              </a>
+            </div>
+          </div>
+          <div class="row has-centered">
+            <div class="column is-shrink is-centered">
+              <h3 id="time_remaining">TIME REMAINING</h3>
+              <div class="section is-very-big-heading" id="clock"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endblock %}
