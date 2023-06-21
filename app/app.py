@@ -13,7 +13,7 @@ def create_app():
     #                             Extensions                        #
     #################################################################
 
-    app.before_first_request(lambda: build_assets())
+    app.before_request(lambda: build_assets())
 
     #################################################################
     #                             ROUTES                            #
