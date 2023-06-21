@@ -4,7 +4,7 @@
 all: test clean run start
 
 APP_NAME?=intervals
-CONTAINERS=$$(sudo docker ps -a -q)
+CONTAINERS=$$(sudo docker ps -f "name=${APP_NAME}" -q)
 
 ###### Database #######
 
@@ -17,7 +17,7 @@ create-network:
 build:
 	docker-compose build --no-cache
 
-run: clean create-network 
+run: create-network 
 	docker-compose up --build -d
 	docker logs -f --since=5m -t $(APP_NAME)
 

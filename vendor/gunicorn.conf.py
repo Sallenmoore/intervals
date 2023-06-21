@@ -7,7 +7,7 @@ bind = f"{os.environ.get('HOST', '0.0.0.0')}:{os.environ.get('PORT', 80)}"
 workers = 2 * multiprocessing.cpu_count() + 1
 
 access_log_format = "%(U)s -  %(m)s - response time: %(M)s %(b)s \n"
-error_log_format = "%(U)s -  %(m)s \n"
+error_log_format = "%(U)s \n"
 # Access log - records incoming HTTP requests
 accesslog = os.getenv("ACCESS_LOG", "-")
 # Error log - records Gunicorn server goings-on

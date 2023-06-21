@@ -13,11 +13,6 @@ def create_app():
     #                             Extensions                        #
     #################################################################
 
-    # css_input = os.path.join(app.static_folder, "style/sass/main.scss")
-    # css_output = os.path.join(app.static_folder, "style/main.css")
-    # js_input = os.path.join(app.static_folder, "js")
-    # js_output = os.path.join(app.static_folder, "js/main.min.js")
-
     app.before_first_request(lambda: build_assets())
 
     #################################################################
