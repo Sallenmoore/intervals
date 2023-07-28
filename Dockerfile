@@ -13,7 +13,3 @@ RUN pip install --no-cache-dir --upgrade pip wheel
 COPY ./requirements.txt /var/tmp/requirements.txt
 RUN pip install -r /var/tmp/requirements.txt
 RUN pip freeze > /var/tmp/requirements-freeze.txt
-
-
-
-

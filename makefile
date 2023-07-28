@@ -1,23 +1,19 @@
 
 .PHONY: all build run clean deepclean test tests debug
 
-all: test clean run start
+all: test clean run
 
-APP_NAME?=intervals
-CONTAINERS=$$(sudo docker ps -f "name=${APP_NAME}" -q)
+include .env
+export
 
-###### Database #######
-
-create-network:
-	if [ -z "$$(docker network ls --filter name=app_net | grep -w app_net)" ]; then \
-		docker network create app_net; \
-	fi
+APP_NAME?=app
+CONTAINERS=$$(sudo docker ps --filter "name=${APP_NAME}" -q)
 
 ###### BUILD and RUN #######
 build:
 	docker-compose build --no-cache
 
-run: create-network 
+run: 
 	docker-compose up --build -d
 	docker logs -f --since=5m -t $(APP_NAME)
 
@@ -38,9 +34,9 @@ deepclean: clean
 debug: run
 	docker logs -f --since=5m -t $(APP_NAME)
 
-tests: 
+tests:
 	docker-compose up --build -d
-	docker exec -it $(APP_NAME) python -m pytest --cov=autonomous -rx -l -x --log-level=INFO --no-cov-on-fail
+	docker exec -it $(APP_NAME) python -m pytest --cov=autonomous -rx -l -x --full-trace --log-level=INFO --no-cov-on-fail
 
 RUNTEST?="test_"
 test:

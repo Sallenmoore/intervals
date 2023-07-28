@@ -2,25 +2,21 @@ version: "3"
 
 services:
   intervals:
-    image: intervals:latest
+    image: ${APP_NAME}:latest
     build:
       context: .
     working_dir: /var/app
     env_file: .env
-    container_name: intervals
+    container_name: ${APP_NAME}
     networks:
-      - app_net
+      - auto_net
     volumes:
       - ./app:/var/app/
-    command:
-      [
-        "gunicorn",
-        "app:create_app()",
-        "-c/var/gunicorn.conf.py"
-      ]
+      - ./tests:/var/app/tests
+      - ./vendor/autojs/src:/var/app/static/js/autojs
+      - ./vendor/autostyle:/var/app/static/style/autostyle
+    command: ["gunicorn", "app:create_app()", "-c/var/gunicorn.conf.py"]
     ports:
       - "8000:8000"
 networks:
   app_net:
-
-

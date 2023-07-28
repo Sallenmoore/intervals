@@ -3,7 +3,7 @@
 ##################################
 
 ##### Frameworks #####
-autonomous == 0.0.2
+autonomous-app == 0.0.5
 
 ##### Configuration and Documentation #####
 
