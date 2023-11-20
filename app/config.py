@@ -7,17 +7,9 @@ import os
 #################################################################
 class Config:
     APP_NAME = os.environ.get("APP_NAME", __name__)
-    HOST = os.environ.get("HOST", "0.0.0.0")
-    PORT = os.environ.get("PORT", 80)
+    HOST = os.environ.get("APP_HOST", "0.0.0.0")
+    PORT = os.environ.get("APP_PORT", 5000)
     SECRET_KEY = os.environ.get("SECRET_KEY", "NATASHA")
-
-
-class ProductionConfig(Config):
-    DEBUG = False
-    TESTING = False
-
-
-class DevelopmentConfig(Config):
-    DEBUG = True
-    TESTING = True
-    TRAP_HTTP_EXCEPTIONS = True
+    DEBUG = os.environ.get("DEBUG", False)
+    TESTING = os.environ.get("TESTING", False)
+    TRAP_HTTP_EXCEPTIONS = os.environ.get("TRAP_HTTP_EXCEPTIONS", False)

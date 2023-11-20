@@ -11,16 +11,9 @@ def index():
     return render_template("index.html")
 
 
-# @index_page.route("/add", methods=("POST",))
-# def add():
-#     return {"result": "success"}
-
-
-# @index_page.route("/update", methods=("POST",))
-# def updates():
-#     return "updated"
-
-
-# @index_page.route("/delete", methods=("POST",))
-# def delete():
-#     return "deleted"
+# @auth_required
+# def protected():
+#     if request.form:
+#         session.update(request.json)
+#     context = {"user": AutoAuth.current_user, **request.json}
+#     return render_template("index.html", **context)

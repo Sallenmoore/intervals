@@ -1,5 +1,5 @@
 
-.PHONY: all build run clean deepclean test tests debug
+.PHONY: all build run clean deepclean test tests fulltests debug
 
 all: test clean run
 
@@ -7,38 +7,42 @@ include .env
 export
 
 APP_NAME?=app
-CONTAINERS=$$(sudo docker ps --filter "name=${APP_NAME}" -q)
+CONTAINERS=$$(sudo docker ps -a -q)
 
 ###### BUILD and RUN #######
 build:
-	docker-compose build --no-cache
+	docker compose build --no-cache
 
 run: 
-	docker-compose up --build -d
-	docker logs -f --since=5m -t $(APP_NAME)
+	docker compose up --build -d
 
 ###### CLEANING #######
-
+APPCONTAINERS=$$(sudo docker ps --filter "name=${APP_NAME}" -q)
 clean:
 	sudo docker ps -a
-	-docker-compose down --remove-orphans
-	-sudo docker kill $(CONTAINERS)
+	-docker compose down --remove-orphans
+	-sudo docker kill $(APPCONTAINERS)
+
+cleanall: 
+	sudo docker kill $$(sudo docker ps -a -q)
 
 deepclean: clean
+	-sudo docker kill $(CONTAINERS)
 	-sudo docker container prune -f
 	-sudo docker image prune -f
+	-sudo docker network prune -f
 	-sudo docker system prune -a -f --volumes
 
 ###### TESTING #######
 
 debug: run
-	docker logs -f --since=5m -t $(APP_NAME)
+	docker compose logs -f --since=5m &
 
-tests:
-	docker-compose up --build -d
-	docker exec -it $(APP_NAME) python -m pytest --cov=autonomous -rx -l -x --full-trace --log-level=INFO --no-cov-on-fail
+fulltests: clean build debug tests
 
-RUNTEST?="test_"
-test:
-	docker-compose up --build -d
-	docker exec -it $(APP_NAME) python -m pytest --log-level=INFO -rx -l -x -k $(RUNTEST)
+tests: debug
+	docker compose exec -it $(APP_NAME) python -m pytest --cov=app -rx -l -x --log-level=DEBUG --no-cov-on-fail
+
+RUNTEST?=""
+test: build
+	docker compose exec -it $(APP_NAME) python -m pytest --log-level=INFO -s -rx -l -x -k $(RUNTEST)

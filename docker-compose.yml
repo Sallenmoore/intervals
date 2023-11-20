@@ -1,15 +1,13 @@
 version: "3"
 
 services:
-  intervals:
+  app:
     image: ${APP_NAME}:latest
     build:
       context: .
     working_dir: /var/app
     env_file: .env
     container_name: ${APP_NAME}
-    networks:
-      - auto_net
     volumes:
       - ./app:/var/app/
       - ./tests:/var/app/tests
@@ -17,6 +15,7 @@ services:
       - ./vendor/autostyle:/var/app/static/style/autostyle
     command: ["gunicorn", "app:create_app()", "-c/var/gunicorn.conf.py"]
     ports:
-      - "8000:8000"
+      - "${ENTRY_PORT}:${APP_PORT}"
 networks:
-  app_net:
+  default:
+    name: ${APP_NAME}_net

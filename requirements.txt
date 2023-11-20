@@ -3,7 +3,7 @@
 ##################################
 
 ##### Frameworks #####
-autonomous-app == 0.0.5
+autonomous-app == 0.1.65
 
 ##### Configuration and Documentation #####
 
@@ -39,9 +39,3 @@ gunicorn
 
 dateparser
 
-##################################
-#           DEVELOPMENT          #
-##################################
-
-pytest
-pytest-cov
