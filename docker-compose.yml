@@ -15,7 +15,7 @@ services:
       - ./vendor/autostyle:/var/app/static/style/autostyle
     command: ["gunicorn", "app:create_app()", "-c/var/gunicorn.conf.py"]
     ports:
-      - "${ENTRY_PORT}:${APP_PORT}"
+      - "${APP_PORT}:${COMM_PORT}"
 networks:
   default:
     name: ${APP_NAME}_net

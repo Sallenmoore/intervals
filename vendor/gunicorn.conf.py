@@ -3,7 +3,7 @@ import os
 from glob import glob
 
 # Non logging stuff
-bind = f"{os.environ.get('HOST', '0.0.0.0')}:{os.environ.get('PORT', 80)}"
+bind = f"{os.environ.get('HOST', '0.0.0.0')}:{os.environ.get('COMM_PORT', 80)}"
 workers = 2 * multiprocessing.cpu_count() + 1
 
 access_log_format = "%(U)s -  %(m)s - response time: %(M)s %(b)s \n"
