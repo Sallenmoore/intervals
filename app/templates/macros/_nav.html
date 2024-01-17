@@ -1,22 +1,4 @@
-{% macro sidenav() -%}
-<div class="is-mobile-only has-bg-primary" id="slideout-menu">
-  <nav class="top has-bg-secondary">
-    <div class="top__burger has-animate is-end" id="slideoutmenu-close">
-      <span></span>
-    </div>
-  </nav>
-  <nav class="menu has-bg-primary">
-    <p class="menu__title">Menu</p>
-    <ul class="menu__list">
-      <li><a href="#">first</a></li>
-    </ul>
-  </nav>
-</div>
-{%- endmacro %}
-
-{% macro fullnav(footer_text="Contact Info") -%}
-
-{{ sidenav() }}
+{% macro fullnav(footer_text=None) -%}
 
 <nav class="top is-mobile-responsive has-centered has-bg-secondary">
   <div class="top__brand ">
@@ -32,9 +14,6 @@
         </div>
       </div>
     </a>
-  </div>
-  <div class="top__burger has-animate is-end" id="burger">
-    <span></span>
   </div>
 </nav>
 

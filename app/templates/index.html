@@ -5,73 +5,71 @@
 {{ nav.fullnav() }}
 
 <div class="container">
-  <div class="section">
-    <div class="row has-spacing">
-      <div class="column is-5">
-        <div class="panel">
-          <div class="row">
-            <div class="column is-12">
-              <h2>Total Time</h2>
-              <div class="row" id="total_time">
-                <div class="column is-one-quarter">
-                  <input class="timerinput" id="total_min" type="number" value="5">
-                  <label for="total_min">minutes</label>
-                </div>
-                <div class="column is-shrink is-heading">
-                  :
-                </div>
-                <div class="column is-one-third ">
-                  <input class="timerinput" id="total_sec" type="number" value="00" max="60" min="00">
-                  <label for="total_sec">Seconds</label>
-                </div>
+  <div class="row has-spacing">
+    <div class="column is-5">
+      <div class="panel">
+        <div class="row">
+          <div class="column is-12">
+            <h2>Total Time</h2>
+            <div class="row" id="total_time">
+              <div class="column is-one-quarter">
+                <input class="timerinput" id="total_min" type="number" value="5">
+                <label for="total_min">minutes</label>
               </div>
-              <h2>Intervals</h2>
-              <ul class="has-no-list-style" id="intervals">
-              </ul>
-              <div class="row">
-                <div class="column">
-                  <input id="add_interval_min" type="number" value="0">
-                  <label for="add_interval_min">minutes</label>
-                </div>
-                <div class="column">
-                  :
-                </div>
-                <div class="column">
-                  <input id="add_interval_sec" type="number" value="00" max="60" min="00">
-                  <label for="add_interval_sec">Seconds</label>
-                </div>
-                <div class="column">
-                  <a class="button" id="add_interval_button">Add</a>
-                </div>
+              <div class="column is-shrink is-heading">
+                :
+              </div>
+              <div class="column is-one-third ">
+                <input class="timerinput" id="total_sec" type="number" value="00" max="60" min="00">
+                <label for="total_sec">Seconds</label>
+              </div>
+            </div>
+            <h2>Intervals</h2>
+            <ul class="has-no-list-style" id="intervals">
+            </ul>
+            <div class="row">
+              <div class="column">
+                <input class="timerinput" id="add_interval_min" type="number" value="0">
+                <label for="add_interval_min">minutes</label>
+              </div>
+              <div class="column">
+                :
+              </div>
+              <div class="column">
+                <input class="timerinput" id="add_interval_sec" type="number" value="00" max="60" min="00">
+                <label for="add_interval_sec">Seconds</label>
+              </div>
+              <div class="column">
+                <a class="button" id="add_interval_button">Add</a>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <div class="column is-6">
-        <div class="panel">
-          <div class="row has-centered">
-            <div class="column is-shrink">
-              <a class="button" id="start_button">
-                <iconify-icon icon="material-symbols:play-circle-outline" width="50" height="50"></iconify-icon>
-              </a>
-            </div>
-            <div class="column is-shrink">
-              <a class="button" id="pause_button">
-                <iconify-icon icon="material-symbols:pause-circle-outline" width="50" height="50"></iconify-icon>
-              </a>
-            </div>
-            <div class="column is-shrink">
-              <a class="button" id="clear_button">
-                <iconify-icon icon="material-symbols:stop-circle-outline" width="50" height="50"></iconify-icon>
-              </a>
-            </div>
+    </div>
+    <div class="column is-6">
+      <div class="panel">
+        <div class="row has-centered">
+          <div class="column is-shrink">
+            <a class="button" id="start_button">
+              <iconify-icon icon="material-symbols:play-circle-outline" width="50" height="50"></iconify-icon>
+            </a>
           </div>
-          <div class="row has-centered">
-            <div class="column is-shrink is-centered">
-              <h3 id="time_remaining">TIME REMAINING</h3>
-              <div class="section is-very-big-heading" id="clock"></div>
-            </div>
+          <div class="column is-shrink">
+            <a class="button" id="pause_button">
+              <iconify-icon icon="material-symbols:pause-circle-outline" width="50" height="50"></iconify-icon>
+            </a>
+          </div>
+          <div class="column is-shrink">
+            <a class="button" id="clear_button">
+              <iconify-icon icon="material-symbols:stop-circle-outline" width="50" height="50"></iconify-icon>
+            </a>
+          </div>
+        </div>
+        <div class="row has-centered">
+          <div class="column is-shrink is-centered">
+            <h3 id="time_remaining">TIME REMAINING</h3>
+            <div class="section is-very-big-heading" id="clock"></div>
           </div>
         </div>
       </div>

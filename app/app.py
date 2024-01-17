@@ -7,7 +7,6 @@ from flask import Flask
 from views.index import index_page
 
 from autonomous import log
-from autonomous.assets import build_assets
 
 
 def create_app():
@@ -21,10 +20,6 @@ def create_app():
     #################################################################
     #                             Extensions                        #
     #################################################################
-
-    # - Assets
-
-    app.before_request(lambda: build_assets())
 
     #################################################################
     #                             ROUTES                            #

@@ -1,3 +1,7 @@
+// === Imports
+import * as base from './src/base.js';
+import * as widgets from './src/widgets.js';
+
 // === define a Global object to store all of my page-level variables:
 var Global = {
   intervals: [],
@@ -21,25 +25,24 @@ document.addEventListener("DOMContentLoaded", () => {
 
 function bindEvents() {
   document.getElementById("total_time").addEventListener("change", set_timer);
+
   document.querySelectorAll("input[type='number']").forEach((element) => {
     element.addEventListener("change", (e) => {
       e.currentTarget.value = e.currentTarget.value.toString().padStart(2, "0");
     });
   });
-  document
-    .getElementById("add_interval_button")
-    .addEventListener("click", add_interval);
+
+  document.getElementById("add_interval_button").addEventListener("click", add_interval);
+
   document.querySelectorAll(".remove_interval_button").forEach((element) => {
     element.addEventListener("click", remove_interval);
   });
-  document
-    .getElementById("start_button")
-    .addEventListener("click", start_timer);
-  document
-    .getElementById("pause_button")
-    .addEventListener("click", pause_timer);
+
+  document.getElementById("start_button").addEventListener("click", start_timer);
+
+  document.getElementById("pause_button").addEventListener("click", pause_timer);
+
   document.getElementById("clear_button").addEventListener("click", stop_timer);
-  //it. It will apply those bindings dynamically.
 }
 
 //===Then everything below this is all of the other declared functions for my page...
@@ -97,7 +100,7 @@ function start_timer(e) {
   var interval_index = 0;
   var countdown_total = Math.floor(minutes * 60) + (seconds % 60);
   var next_interval = Global.intervals[interval_index] - 1;
-  
+
   // Update the count down every 1 second
   Global.timer = setInterval(function () {
     if (Global.paused) {
@@ -116,21 +119,22 @@ function start_timer(e) {
 
     if (countdown_total <= 0) {
       clearInterval(Global.timer);
-      new Toasted("SET COMPLETE!");
-      setTimeout(() => {  ding(); }, 500);
+      new widgets.Toasted("SET COMPLETE!");
+      setTimeout(() => { base.ding(); base.ding(); base.ding(); }, 500);
     } else if (next_interval <= 0) {
-      new Toasted("INTERVAL COMPLETE!")
+      new widgets.Toasted("INTERVAL COMPLETE!");
       let intervals = document.getElementById("intervals");
 
       intervals.children[interval_index].querySelector("iconify-icon").remove();
 
       interval_index = (interval_index + 1) % Global.intervals.length;
+      console.log(interval_index);
       next_interval = Global.intervals[interval_index] - 1;
-      //console.log(interval_index);
+      console.log(next_interval);
       intervals.children[interval_index].appendChild(
-        createIcon("material-symbols:arrow-circle-left-rounded", width=25, height=25)
+        base.createIcon("material-symbols:arrow-circle-left-rounded", 25, 25)
       );
-      ding();
+      base.ding();
     } else {
       next_interval -= 1;
     }

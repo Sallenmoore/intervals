@@ -1,12 +1,12 @@
 
 .PHONY: all build run clean deepclean test tests fulltests debug
 
-all: test clean run
+all: clean build run debug
 
 include .env
 export
 
-APP_NAME?=app
+APP_NAME?=intervals
 CONTAINERS=$$(sudo docker ps -a -q)
 
 ###### BUILD and RUN #######
@@ -27,12 +27,3 @@ clean:
 
 debug: run
 	sudo docker compose logs -f --since=5m &
-
-fulltests: clean build debug tests
-
-tests: debug
-	sudo docker compose exec -it $(APP_NAME) python -m pytest --cov=app -rx -l -x --log-level=DEBUG --no-cov-on-fail
-
-RUNTEST?=""
-test: build
-	sudo docker compose exec -it $(APP_NAME) python -m pytest --log-level=INFO -s -rx -l -x -k $(RUNTEST)

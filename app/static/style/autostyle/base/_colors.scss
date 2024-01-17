@@ -1,0 +1,115 @@
+$color-type: hsl !default;
+
+@if not index(hsl rgba hex, $color-type)
+{
+  $color-type: hsl;
+}
+
+$primary: #020202 !default;
+$primary-accent: complement($primary) !default;
+$primary-text: getTextColor($primary) !default;
+
+$secondary: #ffffff !default;
+$secondary-accent: complement($secondary) !default;
+$secondary-text: getTextColor($secondary) !default;
+
+$black: #393939 !default;
+$dark: #304352 !default;
+$dark-grey: #616161 !default;
+$transparent: #ffffff00 !default;
+
+$white: #ffffff !default;
+$light: #e0d2d2 !default;
+$light-grey: #d0cdcd !default;
+$muted: rgba($secondary, .75) !default;
+$screen: rgba($primary, .75) !default;
+
+$link: $secondary-text !default;
+$disabled: #f7f7f7 !default;
+
+
+
+$custom-palette: (
+  ) !default;
+
+$color-palette: (
+  "primary": $primary,
+  "secondary": $secondary,
+  "highlight": $primary-accent,
+  "lowlight": $secondary-accent,
+  "black": $black,
+  "dark": $dark,
+  "white": $white,
+  "muted":$muted,
+  "screen":$screen,
+  "light": $light,
+  "light-grey": $light-grey,
+  "dark-grey": $dark-grey,
+  "transparent": $transparent,
+  "link": $link,
+);
+$text-palette: (
+  "primary": $primary,
+  "secondary": $secondary,
+  "primarytext": $primary-text,
+  "secondarytext": $secondary-text,
+  "highlight": $primary-accent,
+  "lowlight": $secondary-accent,
+  "black": $black,
+  "dark": $dark,
+  "white": $white,
+  "muted":$muted,
+  "screen":$screen,
+  "light": $light,
+  "link": $link,
+);
+
+$color-palette: map-merge($color-palette, $custom-palette);
+
+:root
+{
+  @each $color in $color-palette
+  {
+    --color-#{nth($color, 1)}: #{createColor(nth($color, 2))};
+    --color-#{nth($color, 1)}-darker: #{createColor(darken(nth($color, 2), 10))};
+    --color-#{nth($color, 1)}-lighter: #{createColor(lighten(nth($color, 2), 10))};
+    --color-#{nth($color, 1)}-text: #{getTextColor(nth($color, 2))};
+    --color-#{nth($color, 1)}-alert: #{createColor(transparentize(nth($color, 2), 0.8))};
+  }
+
+  --color-black-overlay: #{createColor(transparentize($black, 0.5))};
+
+  --color-link: #{createColor($link)};
+  --color-muted: #{createColor($muted)};
+  --color-disabled: #{createColor($disabled)};
+}
+
+.has-text
+{
+  @each $color in $text-palette
+  {
+    &-#{nth($color, 1)}
+    {
+      --font-color: #{createColor(nth($color, 2))} !important;
+      color: var(--font-color) !important;
+    }
+  }
+}
+
+.has-bg
+{
+  @each $color in $color-palette
+  {
+    &-#{nth($color, 1)}
+    {
+      --background-color: var(--color-#{nth($color, 1)}) !important;
+      background-color: var(--background-color) !important;
+    }
+  }
+
+  &-disabled
+  {
+    --background-color: var(--color-disabled) !important;
+    background-color: var(--background-color) !important;
+  }
+}
