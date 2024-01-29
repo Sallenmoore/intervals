@@ -4,7 +4,7 @@
 
 /// - https://orbitcss.com/documentation/sass-variables
 // List of variables
-$primary: #1d1624;
+$primary: #201624;
 //$secondary: #0b154f;
 //////////////////////////////////////////////
 //                 Styles                   //
@@ -14,3 +14,6 @@ $primary: #1d1624;
 @import "autostyle/all";
 
 
+#clock{
+    font-size: 10rem;
+}

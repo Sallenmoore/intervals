@@ -16,4 +16,7 @@ $panel-background: $secondary !default;
   width: 100%;
   max-height: 100%;
   background-color: $panel-background;
+  &.is-fullheight{
+    min-height: 100%;
+  }
 }

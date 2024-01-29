@@ -120,7 +120,9 @@ function start_timer(e) {
     if (countdown_total <= 0) {
       clearInterval(Global.timer);
       new widgets.Toasted("SET COMPLETE!");
-      setTimeout(() => { base.ding(); base.ding(); base.ding(); }, 500);
+      for (var i = 0; i < 2000; i += 500) {
+        setTimeout(() => { base.ding(); }, i);
+      }
     } else if (next_interval <= 0) {
       new widgets.Toasted("INTERVAL COMPLETE!");
       let intervals = document.getElementById("intervals");

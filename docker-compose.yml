@@ -8,6 +8,7 @@ services:
     working_dir: /var/app
     env_file: .env
     container_name: ${APP_NAME}
+    restart: unless-stopped
     volumes:
       - ./app:/var/app/
     command: ["/var/app/init.sh"]
